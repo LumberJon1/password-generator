@@ -1,18 +1,101 @@
 // Define code to pass into the writePassword() function below
 
-//Prompts that will generate when the generateBtn is clicked
-var prompts = [];
+//Special characters list
+var specialCharsList = [
+    "!",
+    "#",
+    "$",
+    "%",
+    "&",
+    "\'",
+    "()",
+    "*",
+    "+",
+    ",",
+    "-",
+    ".",
+    "/",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "?",
+    "@",
+    "[",
+    "\"",
+    "]",
+    "^",
+    "_",
+    "`",
+    "{",
+    "|",
+    "}",
+    "~"
+];
 
-//Select criteria from the list to include in password
+//Numeric values list
+var numbersList = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+]
 
-//prompt the length of the password
-
-//prompt whether to include special chars, capitalization, numeric values
+//Alpha-only characters list
+var alphabetList = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+]
 
 //Run the password generation with randomly selected values from among given criteria
+var generatePassword = function() {
+    
+    //Select criteria from the lists to include in password
 
-//Display password in alert or write to page
+        //Prompt with numbers
 
+        //validate user input
+
+        //prompt again or exit loop
+
+    //prompt the length of the password
+
+    //Add a random character to the password for as long as the length
+
+    //return the password
+    
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
