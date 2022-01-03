@@ -124,7 +124,7 @@ var generatePassword = function() {
                 //Set the corresponding variable to a blank string.
                 criteriaOne = "";
                 //Add the user's choice to the array
-                chosenPrompts.push("1");
+                chosenPrompts.push("Special Characters");
 
                 break;
 
@@ -133,7 +133,7 @@ var generatePassword = function() {
             case "numbers":
             case "Numbers":
                 criteriaTwo = "";
-                chosenPrompts.push("2");
+                chosenPrompts.push("Numeric Values");
 
                 break;
 
@@ -142,7 +142,7 @@ var generatePassword = function() {
             case "capital letters":
             case "Capital Letters":
                 criteriaThree = "";
-                chosenPrompts.push("3");
+                chosenPrompts.push("Capital Letters");
 
                 break;
 
@@ -163,16 +163,38 @@ var generatePassword = function() {
         }
     }
 
-    window.alert("Moving on to next section.")
-
-    //Use a switch to evaluate the input and call criteriaPrompt again if it is invalid.
-
-    //Remove the corresponding number from the prompt if it has already been chosen.
+    window.alert("Chosen criteria for inclusion in password:\n"+chosenPrompts.slice(0));
+    console.log(chosenPrompts);
 
 
+    //Set the password length
+    //set minimum and maximum character values
+    var minChars = 8;
+    var maxChars = 128;
 
-    //prompt the length of the password
+    //set flag for while loop
+    var passwordFlag = true;
 
+    while (passwordFlag) {
+        //prompt the length of the password
+        var lengthPrompt = window.prompt("Choose a password length between "+minChars+" and "+maxChars+" characters long.");
+
+        //validate user input to constrain to range
+        if (minChars < parseInt(lengthPrompt) && parseInt(lengthPrompt) < maxChars) {
+            console.log("minChars:", minChars);
+            console.log("maxChars: ", maxChars);
+            console.log("lengthPrompt: ",lengthPrompt);
+            console.log("parsed to int: ", parseInt(lengthPrompt));
+            window.alert("Password length will be "+lengthPrompt+" characters.");
+            //set flag to false and exit loop
+            passwordFlag = false;
+        }
+        else {
+            window.alert("Invalid input.")
+        }
+    }
+
+    //Generate random password
     //Add a random character to the password for as long as the length
 
     //return the password
