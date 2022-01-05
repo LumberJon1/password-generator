@@ -164,7 +164,6 @@ var generatePassword = function() {
     }
 
     window.alert("Chosen criteria for inclusion in password:\n"+chosenPrompts.slice(0));
-    console.log(chosenPrompts);
 
 
     //Set the password length
@@ -180,11 +179,7 @@ var generatePassword = function() {
         var lengthPrompt = window.prompt("Choose a password length between "+minChars+" and "+maxChars+" characters long.");
 
         //validate user input to constrain to range
-        if (minChars < parseInt(lengthPrompt) && parseInt(lengthPrompt) < maxChars) {
-            console.log("minChars:", minChars);
-            console.log("maxChars: ", maxChars);
-            console.log("lengthPrompt: ",lengthPrompt);
-            console.log("parsed to int: ", parseInt(lengthPrompt));
+        if (minChars <= parseInt(lengthPrompt) && parseInt(lengthPrompt) <= maxChars) {
             window.alert("Password length will be "+lengthPrompt+" characters.");
             //set flag to false and exit loop
             passwordFlag = false;
@@ -195,10 +190,78 @@ var generatePassword = function() {
     }
 
     //Generate random password
-    //Add a random character to the password for as long as the length
+    //Alert to the window so user understands what's going on
+    window.alert("Generating randomized password...");
 
-    //return the password
-    
+    //For each character, it should have a chance to come from each of the included criteria arrays
+    var chanceSpecialChar = 0;
+    var chanceNumber = 0;
+    var chanceCapital = 0;
+
+    /*Loop through chosen prompts array and assign new values to the variables above
+    dictating the likelihood of a character being in the password.*/
+    for (var i = 0; i < chosenPrompts.length; i++) {
+
+        if (chosenPrompts[i] === "Special Characters") {
+            chanceSpecialChar = 25;
+        }
+
+        if (chosenPrompts[i] === "Numeric Values") {
+            chanceNumber = 25;
+        }
+
+        if (chosenPrompts[i] === "Capital Letters") {
+            chanceCapital = 25;
+        }
+    }
+
+    //Randomly select which character is generated for the length of the password
+
+    //Define the password array and the placeholder variable for the list index
+    var password = [];
+    var listIndex = 0;
+
+    //Enter a loop while length < lengthPrompt
+    while (password.length < parseInt(lengthPrompt)) {
+
+        //Randomly select which list to pull from...
+        //Generate a randomized percentage
+        var percentage = Math.floor(Math.random() * 100);
+
+        /*Sum the included criteria's relative percentages to determine which percentage score in the variable above will select it.
+        The logic needs to account for cases where the user selects different criteria.*/
+
+        if (percentage < chanceSpecialChar) {
+            //Use a random index from the specialCharsList array and push to password
+            listIndex = Math.floor(Math.random() * specialCharsList.length);
+            password.push(specialCharsList[listIndex]);
+            console.log("Pushed "+toString(specialCharsList[listIndex])+" to password array.")
+
+        }
+
+        else if (percentage > chanceSpecialChar && percentage < (chanceSpecialChar + chanceNumber)) {
+            //Use a random index from the numbersList array and push to password
+            listIndex = Math.floor(Math.random() * numbersList.length);
+            password.push(numbersList[listIndex]);
+            console.log("Pushed "+toString(numbersList[listIndex])+" to password array.")
+        }
+
+        else if (percentage > (chanceSpecialChar + chanceNumber) && percentage < (chanceSpecialChar + chanceNumber + chanceCapital)) {
+            //Use a random index from the alphabetList array, convert to capital, and push to password
+            listIndex = Math.floor(Math.random() * alphabetList.length);
+            password.push(alphabetList[listIndex].toUpperCase());
+            console.log("Pushed "+toString(alphabetList[listIndex].toUpperCase())+" to password array.")
+        }
+
+        else {
+            //Use a random index from the alphabetList array and push to password
+            listIndex = Math.floor(Math.random() * alphabetList.length);
+            password.push(alphabetList[listIndex]);
+            console.log("Pushed "+toString(alphabetList[listIndex])+" to password array.")
+        }
+    }
+
+    return password;
 };
 
 // Get references to the #generate element
