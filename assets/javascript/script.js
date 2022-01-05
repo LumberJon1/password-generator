@@ -235,7 +235,6 @@ var generatePassword = function() {
             //Use a random index from the specialCharsList array and push to password
             listIndex = Math.floor(Math.random() * specialCharsList.length);
             password.push(specialCharsList[listIndex]);
-            console.log("Pushed "+toString(specialCharsList[listIndex])+" to password array.")
 
         }
 
@@ -243,25 +242,22 @@ var generatePassword = function() {
             //Use a random index from the numbersList array and push to password
             listIndex = Math.floor(Math.random() * numbersList.length);
             password.push(numbersList[listIndex]);
-            console.log("Pushed "+toString(numbersList[listIndex])+" to password array.")
         }
 
         else if (percentage > (chanceSpecialChar + chanceNumber) && percentage < (chanceSpecialChar + chanceNumber + chanceCapital)) {
             //Use a random index from the alphabetList array, convert to capital, and push to password
             listIndex = Math.floor(Math.random() * alphabetList.length);
             password.push(alphabetList[listIndex].toUpperCase());
-            console.log("Pushed "+toString(alphabetList[listIndex].toUpperCase())+" to password array.")
         }
 
         else {
             //Use a random index from the alphabetList array and push to password
             listIndex = Math.floor(Math.random() * alphabetList.length);
             password.push(alphabetList[listIndex]);
-            console.log("Pushed "+toString(alphabetList[listIndex])+" to password array.")
         }
     }
 
-    return password;
+    return password.join("");
 };
 
 // Get references to the #generate element
